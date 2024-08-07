@@ -1,23 +1,30 @@
-<!-- empresa/templates/empresa/select_empresa.html -->
-
-
-    
-
 <form class="max-w-sm mx-auto" method="POST" action="{% url 'seleccionar_empresa' %}" id="empresa-select-form">
     {% csrf_token %}
-    <select id="empresa" name="empresa"
-    class="p-2 bg-gray-50 border border-gray-300 text-gray-900 
-    text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 
-    block w-full  dark:bg-gray-700 dark:border-gray-600 
-    dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    onchange="document.getElementById('empresa-select-form').submit();"
-    >
-    
-        <option value="" disabled {% if not request.session.empresa_id %}selected{% endif %}>Seleccione una empresa</option>
-        {% for empresa in empresas %}
-            <option value="{{ empresa.id }}" {% if empresa.id|stringformat:'s' == request.session.empresa_id %}selected{% endif %}>{{ empresa.razon_social }}</option>
-        {% endfor %}
-    </select>
+    {%if empresas%}
+        <select id="empresa" name="empresa"
+        class="p-2 bg-gray-50 border border-gray-300 text-gray-900 
+        text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 
+        block w-full  dark:bg-gray-700 dark:border-gray-600 
+        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        onchange="document.getElementById('empresa-select-form').submit();"
+        >
+        
+            <option value="" disabled {% if not request.session.empresa_id %}selected{% endif %}>Seleccione una empresa</option>
+            {% for empresa in empresas %}
+                <option value="{{ empresa.id }}" {% if empresa.id|stringformat:'s' == request.session.empresa_id %}selected{% endif %}>{{ empresa.razon_social }}</option>
+            {% endfor %}
+        </select>
+    {% else %}
+        <a
+        href="{% url 'admin:empresa_empresa_add' %}"
+        class="p-2 bg-gray-50 border border-gray-300 text-gray-900 
+        text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 
+        block w-full  dark:bg-gray-700 dark:border-gray-600 
+        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+        + añadir empresa
+    </a>
+    {% endif %}
 </form>
 
 
