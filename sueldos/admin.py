@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Empleado, liquidacion, Recibo, Concepto, DetalleRecibo
+from .models import Empleado, Liquidacion, Recibo, Concepto, DetalleRecibo
 
 class EmpleadoAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'apellido', 'dni', 'cuil', 'tipo_liquidacion', 'fecha_ingreso', 'activo')
@@ -37,7 +37,7 @@ class DetalleReciboAdmin(admin.ModelAdmin):
     list_per_page = 10
     
 admin.site.register(Empleado, EmpleadoAdmin)
-admin.site.register(liquidacion, liquidacionAdmin)
+admin.site.register(Liquidacion, liquidacionAdmin)
 admin.site.register(Recibo, ReciboAdmin)
 admin.site.register(Concepto, ConceptoAdmin)
 admin.site.register(DetalleRecibo, DetalleReciboAdmin)

@@ -1,0 +1,8 @@
+<h2 class="font-bold">Lista de últimas liquidaciones</h2>
+{% if liquidaciones %}
+    {% for liquidacion in liquidaciones %}
+        {{liquidacion}}
+    {% endfor %}
+{% else %}
+<p>No hay liquidaciones cargadas</p>
+{% endif %}

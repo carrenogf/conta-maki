@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
-from .models import Empresa
+from empresa.models import Empresa
 
 def seleccionar_empresa(request):
     if request.method == 'POST':

@@ -42,7 +42,7 @@ class Empleado(models.Model):
         return self.nombre + ' ' + self.apellido
 
 
-class liquidacion(models.Model):
+class Liquidacion(models.Model):
     nombre = models.CharField(max_length=200)
     abierta = models.BooleanField(default=True)
     periodo = models.DateField()

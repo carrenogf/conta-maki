@@ -2,6 +2,7 @@
 
 from django.shortcuts import redirect
 from django.urls import reverse
+from empresa.models import Empresa
 
 class EmpresaSeleccionadaMiddleware:
     def __init__(self, get_response):
@@ -15,7 +16,8 @@ class EmpresaSeleccionadaMiddleware:
 
         # Si no hay empresa seleccionada, redirige a la vista de selección
         if 'empresa_id' not in request.session:
-            return redirect('seleccionar_empresa')
+            request.session['empresa_id'] = Empresa.objects.first().id
+
 
         response = self.get_response(request)
         return response
