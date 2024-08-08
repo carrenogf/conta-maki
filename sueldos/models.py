@@ -12,7 +12,7 @@ tipo_concepto_choices = (
     ("D","D")
 )
 class Empleado(models.Model):
-    empleador = models.ForeignKey(Empresa, on_delete=models.CASCADE)
+    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
     dni = models.CharField(max_length=8)
@@ -54,7 +54,7 @@ class Liquidacion(models.Model):
         verbose_name = "Liquidacion"
         verbose_name_plural = "Liquidaciones"
     def __str__(self):
-        return self.empresa.razon_social + ' - ' + self.periodo.strftime('%m/%Y')
+        return self.nombre + ' - ' + self.periodo.strftime('%m/%Y')
     
     
 
@@ -68,7 +68,7 @@ class Recibo(models.Model):
         return self.empleado.nombre + ' ' + self.empleado.apellido + ' - ' + self.liquidacion.periodo.strftime('%m/%Y')
 
     def clean(self):
-        if self.empleado.empleador != self.liquidacion.empresa:
+        if self.empleado.empresa != self.liquidacion.empresa:
             raise ValidationError('El empleado no pertenece a la misma empresa de la liquidación.')
     
 class Concepto(models.Model):
