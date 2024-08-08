@@ -9,12 +9,12 @@
 {% if empleados %}
     {% for empleado in empleados %}
         <a href="{% url 'admin:sueldos_empleado_change' empleado.id %}"
-        class="block max-w-sm p-1 bg-white 
+        class="block p-1 bg-white 
         border border-gray-200 rounded-lg 
         shadow-md hover:bg-gray-100 
         dark:bg-gray-800 dark:border-gray-700 
-        dark:hover:bg-gray-700"
-        >{{empleado}} -{{empleado.cuil}}</a>
+        dark:hover:bg-gray-700 w-full"
+        >{{empleado}} - {{empleado.cuil}}</a>
     {% endfor %}
     
 {% else %}
