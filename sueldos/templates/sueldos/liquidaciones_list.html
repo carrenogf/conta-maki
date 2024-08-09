@@ -6,15 +6,27 @@
 </div>
 
 {% if liquidaciones %}
-    {% for liquidacion in liquidaciones %}
-        <a href="{% url 'admin:sueldos_liquidacion_change' liquidacion.id %}"
-        class="block p-1 bg-white 
-        border border-gray-200 rounded-lg 
-        shadow-md hover:bg-gray-100 
-        dark:bg-gray-800 dark:border-gray-700 
-        dark:hover:bg-gray-700 w-full"
-        >{{liquidacion}}</a>
-    {% endfor %}
+  {% for liquidacion in liquidaciones %}
+  <div class="block p-1 bg-white 
+  border border-gray-200 rounded-lg 
+  shadow-md hover:bg-gray-100 
+  dark:bg-gray-800 dark:border-gray-700 
+  dark:hover:bg-gray-700 w-full
+  grid grid-cols-6"
+  >
+    <div class="col-span-5">
+      <a href="{% url 'admin:sueldos_liquidacion_change' liquidacion.id %}">{{liquidacion}}</a>
+    </div>
+    <div class="col-span-1">
+      <a href="{% url 'recibo_liquidacion' liquidacion.id %}">
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-5-4v4h4V3h-4Z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  {% endfor %}
 {% else %}
 <p>No hay liquidaciones cargadas</p>
 {% endif %}

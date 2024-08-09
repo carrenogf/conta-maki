@@ -14,9 +14,10 @@ class EmpresaSeleccionadaMiddleware:
             response = self.get_response(request)
             return response
 
-        # Si no hay empresa seleccionada, redirige a la vista de selección
+        # Si no hay empresa seleccionada,selecciona la primera
         if 'empresa_id' not in request.session:
             request.session['empresa_id'] = Empresa.objects.first().id
+            request.session['empresa_razon_social'] = Empresa.objects.first().razon_social
 
 
         response = self.get_response(request)
